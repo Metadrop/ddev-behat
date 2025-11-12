@@ -5,6 +5,9 @@ project_files:
   - commands
 
 post_install_actions:
-  - cp -rn .ddev/ddev-behat/boilerplate/. .
+  - mkdir -p ../tests/behat/
+  - cp -r --update=none ddev-behat/boilerplate/common ../tests/behat/
+  - cp -r --update=none ddev-behat/boilerplate/local ../tests/behat/
+  - cp -r --update=none ddev-behat/boilerplate/pro ../tests/behat/
 
 ddev_version_constraint: '>= v1.24.3'
