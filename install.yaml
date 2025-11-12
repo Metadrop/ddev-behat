@@ -1,6 +1,3 @@
 name: behat
 
-project_files:
-  - docker-compose.behat.yaml
-
 ddev_version_constraint: '>= v1.24.3'
