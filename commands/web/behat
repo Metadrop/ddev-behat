@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Run Behat tests
+## Usage: behat [flags]
+## Example: "ddev behat" or "ddev behat features/example.feature" or "ddev behat --tags=@smoke"
+
+# Check if Behat is installed
+if ! command -v behat &> /dev/null; then
+    echo "Error: Behat is not installed."
+    echo ""
+    echo "To install Behat, run:"
+    echo "  ddev setup-behat"
+    echo ""
+    echo "Or manually install with:"
+    echo "  ddev composer require --dev behat/behat metadrop/behat-contexts:^1.0"
+    exit 1
+fi
+
+# Run Behat with all passed arguments
+behat "$@"

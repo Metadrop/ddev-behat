@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Setup Behat with required dependencies
+## Usage: setup-behat
+## Example: "ddev setup-behat"
+
+exec /var/www/html/.ddev/ddev-behat/setup-behat

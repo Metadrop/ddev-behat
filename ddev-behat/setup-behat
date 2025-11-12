@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Setup Behat with required dependencies
+## Usage: setup-behat
+## Example: "ddev setup-behat"
+
+set -e
+
+echo "Installing Behat and dependencies..."
+
+# Check if composer.json exists
+if [ ! -f "composer.json" ]; then
+    echo "Error: composer.json not found. Please run this from your project root."
+    exit 1
+fi
+
+# Install Behat and metadrop/behat-contexts
+echo "Running: composer require --dev behat/behat metadrop/behat-contexts:^1.0"
+composer require --dev behat/behat metadrop/behat-contexts:^1.0
+
+# Install common Behat dependencies for Drupal
+echo "Installing additional Behat dependencies..."
+composer require --dev drupal/drupal-extension behat/mink behat/mink-selenium2-driver behat/mink-goutte-driver
+
+echo ""
+echo "✓ Behat installation complete!"
+echo ""
+echo "Next steps:"
+echo "  1. Copy boilerplate files if needed: cp -rn .ddev/ddev-behat/boilerplate/. ."
+echo "  2. Customize behat.yml for your project"
+echo "  3. Run tests with: ddev behat"
+echo ""
