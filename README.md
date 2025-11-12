@@ -7,7 +7,7 @@
 
 ## Overview
 
-This add-on integrates Behat into your [DDEV](https://ddev.com/) project.
+This add-on integrates Behat into your [DDEV](https://ddev.com/) project, providing a convenient `ddev behat` command that runs Behat tests inside the web container.
 
 ## Installation
 
@@ -20,28 +20,49 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 ## Usage
 
-| Command | Description |
-| ------- | ----------- |
-| `ddev describe` | View service status and used ports for Behat |
-| `ddev logs -s behat` | Check Behat logs |
-
-## Advanced Customization
-
-To change the Docker image:
+Once installed, you can run Behat tests using:
 
 ```bash
-ddev dotenv set .ddev/.env.behat --behat-docker-image="ddev/ddev-utilities:latest"
-ddev add-on get Metadrop/ddev-behat
-ddev restart
+# Run all Behat tests
+ddev behat
+
+# Run specific feature file
+ddev behat features/example.feature
+
+# Run with specific tags
+ddev behat --tags=@smoke
+
+# Get help
+ddev behat --help
 ```
 
-Make sure to commit the `.ddev/.env.behat` file to version control.
+## Configuration
 
-All customization options (use with caution):
+### Behat Configuration
 
-| Variable | Flag | Default |
-| -------- | ---- | ------- |
-| `BEHAT_DOCKER_IMAGE` | `--behat-docker-image` | `ddev/ddev-utilities:latest` |
+Behat configuration should be placed in your project's `behat.yml` file. Example:
+
+```yaml
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://web
+      selenium2:
+        wd_host: http://selenium:4444/wd/hub
+```
+
+### Requirements
+
+Behat and its dependencies should be installed via Composer in your project:
+
+```bash
+ddev composer require --dev behat/behat
+ddev composer require --dev drupal/drupal-extension  # For Drupal projects
+```
 
 ## Credits
 
