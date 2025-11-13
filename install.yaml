@@ -4,6 +4,10 @@ project_files:
   - ddev-behat
   - commands
 
+dependencies:
+  - Metadrop/ddev-selenium
+
+
 post_install_actions:
   - mkdir -p ../tests/behat/
   - cp -r --update=none ddev-behat/boilerplate/common ../tests/behat/
